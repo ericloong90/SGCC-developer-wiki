@@ -14,6 +14,8 @@ SG Code Campus (SGCC) Developer Wikis
 1. Every rename, remove or addition of folder in VSCode, please CMD + S.
 2. CMD + S should trigger the gulp watcher to acknowledge changes to the folder structure.
 
+## WIKI INDEX
+
 <!-- Do not remove the 'Links' comment -->
 <!-- Links -->
 
