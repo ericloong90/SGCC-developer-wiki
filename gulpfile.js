@@ -2,7 +2,7 @@ const { watch } = require("gulp");
 const updateREADME = require("./linkParser.js");
 
 exports.watch = () => {
-  const markdownWatcher = watch(["./markdowns/**"]);
+  const markdownWatcher = watch(["./markdowns/**", "!./markdowns/assets/**", "!./markdowns/**/assets/**"]);
 
   markdownWatcher.on("change", path => {
     console.log(`File ${path} updated`);
