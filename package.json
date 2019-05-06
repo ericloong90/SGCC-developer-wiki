@@ -1,0 +1,23 @@
+{
+  "name": "sgcc-developer-wiki",
+  "version": "1.0.0",
+  "description": "A collab of web development notes among SGCC developers.",
+  "main": "README.md",
+  "dependencies": {
+    "gulp": "^4.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericloong90/SGCC-developer-wiki.git"
+  },
+  "author": "Eric Tai, Mun Mun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericloong90/SGCC-developer-wiki/issues"
+  },
+  "homepage": "https://github.com/ericloong90/SGCC-developer-wiki#readme"
+}

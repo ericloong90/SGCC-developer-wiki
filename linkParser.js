@@ -1,8 +1,4 @@
 const fs = require("fs");
-let indexPage = fs.readFileSync("README.md", "utf8");
-const blackList = [".vscode", "LICENSE", "README.md", "linkParser.js", ".git"];
-let rootLinks = [];
-let newLinks = [];
 
 const dirRecursive = (dir, rootLinks, counter) => {
   fs.readdirSync(dir).forEach(item => {
@@ -10,22 +6,29 @@ const dirRecursive = (dir, rootLinks, counter) => {
     const isDir = stats.isDirectory();
     let link = isDir ? `- ${item}` : `- [${item}](${dir}/${item})`;
 
-    if (blackList.indexOf(item) === -1) {
+    if (isDir || item.indexOf(".md") > -1) {
       rootLinks.push(`${"\t".repeat(counter)}${link}`);
-      if (stats.isDirectory()) {
+      if (isDir) {
         dirRecursive(`${dir}/${item}`, rootLinks, counter + 1);
       }
     }
   });
 };
 
-dirRecursive(".", rootLinks, 0);
-newLinks = rootLinks.join("\n");
-fs.writeFileSync(
-  "README.md",
-  indexPage.replace(
-    "<!-- Links -->",
-    `<!-- Links -->
-${newLinks}`
-  )
-);
+const runRecursion = () => {
+  let indexPage = fs.readFileSync("README.md", "utf8");
+  let rootLinks = [];
+  let newLinks = [];
+  const replaceLinks = indexPage.match("<!-- Links -->");
+
+  dirRecursive("./markdowns", rootLinks, 0);
+  newLinks = rootLinks.join("\n");
+  indexPage = indexPage.replace(
+    indexPage.substring(replaceLinks.index, indexPage.length - 1),
+    `<!-- Links -->\n${newLinks}`
+  );
+
+  fs.writeFileSync("README.md", indexPage);
+};
+
+module.exports = runRecursion;
